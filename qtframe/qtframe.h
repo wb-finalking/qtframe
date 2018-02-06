@@ -32,6 +32,7 @@ private:
 	QAction * openImagesAct;
 
 	Paint* paint;
+	QWidget* cw;
 
 	QHBoxLayout *TopRightLayout;
 

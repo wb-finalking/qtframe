@@ -5,10 +5,11 @@
 Paint::Paint(QWidget *parent)
 	: QWidget(parent){
 
-	setAttribute(Qt::WA_StaticContents);
-	this->setParent(parent);
+	//setAttribute(Qt::WA_StaticContents);
+	//this->setParent(parent);
 
 	setWindowTitle(tr("Source Image"));
+	paint = new QLabel(this);
 
 }
 
@@ -22,7 +23,12 @@ void Paint::paintEvent(QPaintEvent *  event )
 {
 	QPainter painter(this);
 
-	painter.drawImage(QPoint(0, 0), image);
+	TopRightLayout = new QHBoxLayout(this);
+	TopRightLayout->addWidget(paint);
+	paint->setPixmap(QPixmap::fromImage(image));
+
+	//painter.translate(x(), y());
+	//painter.drawImage(QPoint(0,0), image);
 	/*painter.drawPixmap(rect(), QPixmap(":/Images/logo"));*/
 
 	//    update();

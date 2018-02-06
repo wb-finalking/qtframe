@@ -5,11 +5,16 @@ qtframe::qtframe(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
+	setFixedSize(1026, 703);
+	ui.painter->setFixedSize(800, 600);
+	ui.painter->show();
 
-	paint = 0;
+	//paint = 0;
+	//ui.painter = 0;
 	
-	createActions();
-	createMenus();
+	//createActions();
+	//createMenus();
+	connect(ui.actionopen_file, SIGNAL(triggered()), this, SLOT(openImages()));
 
 	/*TopRightLayout = new QHBoxLayout();
 	TopRightLayout->addWidget(fileMenu);
@@ -44,11 +49,21 @@ void qtframe::openImages(){
 		tr("Open Source Image"), QDir::currentPath(), tr("Image Files (*.png *.jpg *.bmp)"));
 	QImage image(source);
 
-	if (!paint)
-		paint = new Paint(this);
-	setCentralWidget(paint);
-	paint->setImage(image);
-	paint->setFixedSize(image.width(), image.height());
-	resize(image.width(), image.height());
-	paint->show();
+	//if (!ui.painter)
+	//{
+	//	ui.painter = new Paint(this);
+	//	ui.painter->setFixedSize(800, 600);
+	//	ui.painter->show();
+	//}
+
+	//cw = new QWidget(this);
+	//TopRightLayout = new QHBoxLayout(cw);
+	//TopRightLayout->addWidget(ui.painter);
+	//setCentralWidget(cw);
+	//image.scaled(ui.painter->width(), ui.painter->height());
+
+	ui.painter->setImage(image.scaled(ui.painter->width(), ui.painter->height()));
+	//ui.painter->setFixedSize(image.width(), image.height());
+	//resize(image.width(), image.height());
+	//ui.painter->show();
 }
